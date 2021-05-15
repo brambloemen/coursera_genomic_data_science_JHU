@@ -35,3 +35,15 @@ tf_motif['AP-1'] = 'tgagtca'
 
 # modify dictionary
 tf_motif['AP-1'] = 'tga(g/c)tca'
+
+# delete from library
+del tf_motif['AP-1']
+
+# add multiple keys at once
+tf_motif.update({'SP-1': 'ggcggg', 'c/EBP': 'attgcgcaat', 'oct-1': 'atgcaaa'})
+len(tf_motif)
+
+# list all tf_motif elements
+list(tf_motif.keys())
+list(tf_motif.values())
+sorted(tf_motif.keys())
