@@ -56,10 +56,19 @@ for line in f:
         seqs[name] = seqs[name] + line
 f.close()
 
+# try to delete short sequences
+seqlen = 20
+print(list(seqs.keys()))
+for i in range(0, len(seqs)):
+    print(i)
+    if len(list(seqs.values())[i]) < seqlen:
+        seqs.pop(list(seqs.keys())[i])
+
 
 for name, seq in seqs.items():
     print(name, seq)
 
+"""
 import sys
 print(sys.argv)
 
@@ -82,7 +91,7 @@ if "-l" in opts.keys():
     if int(opts['l'] < 0) :
         print("length of sequence should be larger than 0"); sys.exit()
     seqlen = opts['-l']
-
+"""
 
 """
 note about unix environment:
