@@ -1,15 +1,15 @@
 #!/Anaconda/python  # in unix, put this in front to run from terminal
 
 """
-example of writing function to be used from command readline
+example of writing function to be used from command line
 """
 
 
 import sys
 import getopt
 
-print(sys.argv)
-filename = sys.argv[0]
+filename = sys.argv[1]
+print("processing %s" % filename, "...")
 
 try:
     ftest = open(filename)
@@ -26,23 +26,22 @@ def usage():
     """)
 
 
-o, a = getopt.getopt(sys.argv[1:], "l:h", ["length", "help"])
+o, a = getopt.getopt(sys.argv[2:], "hl:", ["help", "length"])
 opts = {}
 seqlen = 0
 
 for k, v in o:
     opts[k] = v
+print(opts)
+
 if "-h" in opts.keys():
     usage()
     sys.exit()
-if len(a) < 1:
-    usage()
-    sys.exit("input fasta file is missing")
 if "-l" in opts.keys():
-    if int(opts['l'] < 0):
+    if int(opts['-l']) < 0:
         print("length of sequence should be larger than 0")
         sys.exit()
-    seqlen = opts['-l']
+    seqlen = int(opts['-l'])
 
 f = open(filename, "r")
 seqs = {}   # initialize dictionary
@@ -59,8 +58,11 @@ for line in f:
         seqs[name] = seqs[name] + line
 f.close()
 
-"""
 for i in range(0, len(seqs)):
-    if len(seqs.values()[i]) < seqlen:
-        seqs.pop(seqs.values()[i])
-"""
+    if len(list(seqs.values())[i]) < seqlen:
+        seqs.pop(list(seqs.keys())[i])
+        print("sequence nr %d" % int(i+1), " removed")
+
+
+for name, seq in seqs.items():
+    print(name, seq)

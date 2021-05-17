@@ -14,7 +14,7 @@ f = open("example", "a")  # open in append mode
 try:
     e = open("example.BAM", "r")
 except IOError:
-    print("the file doesn't exist!")
+    print("the file 'example.BAM' doesn't exist!")
 
 
 tst = open("example.fasta", "r")  # open in read mode
