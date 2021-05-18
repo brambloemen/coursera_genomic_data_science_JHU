@@ -32,8 +32,9 @@ def complement(seq):
     """
     same as using a for loop to append each item into an empty list
     """
+    # translate each base in the list
     letters = [basecomplement[base] for base in letters]
-    return "".join(letters)  # first create string, apply join method
+    return "".join(letters)  # apply join method, separator = ""
 # join and split methods
 
 
